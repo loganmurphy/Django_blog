@@ -45,5 +45,4 @@ urlpatterns = [
     zen_url('admin/', admin.site.urls),
     zen_url('api-auth/', include(
                   'rest_framework.urls', namespace='rest_framework')),
-    zen_url('/', ),
 ]

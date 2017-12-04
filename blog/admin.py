@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Publication, Post, Category
+from blog.models import Publication, Post
 
 
 @admin.register(Publication)
@@ -12,9 +12,9 @@ class PostAdmin(admin.ModelAdmin):
     list_filer = ('created')
     search_fields = ('title', 'slug', 'body')
 
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('category_name',)
+# @admin.register(Category)
+# class CategoryAdmin(admin.ModelAdmin):
+#     list_display = ('category_name',)
 
 class Meta:
   ordering = ['-created']

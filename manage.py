@@ -21,18 +21,18 @@ if __name__ == "__main__":
                 "forget to activate a virtual environment?"
             )
         raise
-        
+
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     dotenv_path = os.path.join(BASE_DIR, '.env')
-    
+
     if os.path.exists(dotenv_path):
         dotenv.read_dotenv(dotenv_path)
-        
+
     if 'devserver' in sys.argv or 'runserver' in sys.argv:
         os.environ.setdefault("ENVIRONMENT", "development")
-        
+
     elif 'prodserver' in sys.argv or 'runuwsgi' in sys.argv:
         os.environ.setdefault("UWSGI_MODULE", "djblog.wsgi")
         os.environ.setdefault("ENVIRONMENT", "production")
-        
+
     execute_from_command_line(sys.argv)

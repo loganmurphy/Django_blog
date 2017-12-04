@@ -11,7 +11,7 @@ def post_list (request, slug):
   posts = Post.objects.filter(blog__slug=slug)
   serializer = PostSerializer(posts, many=True)
   return Response(serializer.data)
-  
+
 @api_view(['POST'])
 @permission_classes((IsAuthenticated, ))
 def add_post (request):

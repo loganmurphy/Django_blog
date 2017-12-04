@@ -5,7 +5,7 @@ from graphene_django.rest_framework.mutation \
     import SerializerMutation
 
 from blog.models import Publication, Post
-from blog.serializers import PostSerializer
+from blog.serializers import PostSerializer, PubSerializer
 
 class PublicationNode(DjangoObjectType):
   class Meta:
@@ -27,8 +27,13 @@ class AddPost (SerializerMutation):
   class Meta:
     serializer_class = PostSerializer
 
+class AddPublication (SerializerMutation):
+  class Meta:
+    serializer_class = PubSerializer
+
 class Mutation (ObjectType):
   add_post = AddPost.Field()
+  add_pub = AddPublication.Field()
 
 class Query(ObjectType):
     all_pubs = DjangoFilterConnectionField(PublicationNode)
@@ -38,7 +43,7 @@ class Query(ObjectType):
             return Post.objects.none()
         else:
             return Post.objects.filter(author=info.context.user)
-        from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from jwt_auth.mixins import JSONWebTokenAuthMixin
 from graphene_django.views import GraphQLView
